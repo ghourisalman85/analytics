@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myApp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>User Information | Gentellela</title>
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.css" rel="stylesheet">
+    <style>
+    	.marginNone{
+    		margin:0px;
+    	}
+    </style>
+  </head>
+
+  <body class="nav-md" ng-controller="AppCtrl" ng-init="getUserInfoInner()">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Geeksroot</span></a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <!-- menu profile quick info -->
+    <div class="profile">
+      <div class="profile_pic">
+        <img src="assets/images/img.jpg" alt="..." class="img-circle profile_img">
+      </div>
+      <div class="profile_info">
+        <span>Welcome,</span>
+        <h2 ng-cloak>{{websiteName}}</h2>
+      </div>
+    </div>
+    <!-- /menu profile quick info -->
+
+    <br />
+
+      <!-- sidebar menu -->
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section">
+        <h3>General</h3>
+        <ul class="nav side-menu">
+          <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="/siteDashboard">Dashboard</a></li>
+            </ul>
+          </li>
+          <li><a><i class="fa fa-edit"></i> Advertising <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="/addAdvertising">Add Advertisment</a></li>
+            </ul>
+          </li>
+          <li><a><i class="fa fa-table"></i> Users<span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="/users">List all</a></li>
+              <li><a href="/usersinterval">Users Intervals</a></li>
+            </ul>
+          </li>
+       
+        </ul>
+      </div>
+    </div>
+    <!-- /sidebar menu -->
+
+    <!-- /menu footer buttons -->
+    <div class="sidebar-footer hidden-small">
+      <a data-toggle="tooltip" data-placement="top" title="Settings">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="Lock">
+        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="Logout">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+      </a>
+    </div>
+    <!-- /menu footer buttons -->
+  </div>
+</div>
+
+<!-- top navigation -->
+<div class="top_nav">
+  <div class="nav_menu">
+    <nav>
+      <div class="nav toggle">
+        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="">
+          <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-cloak>
+            {{websiteName}}
+            <span class=" fa fa-angle-down"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-usermenu pull-right">
+            <li><a href="javascript:;"> Profile</a></li>
+            <li>
+              <a href="javascript:;">
+                <span class="badge bg-red pull-right">50%</span>
+                <span>Settings</span>
+              </a>
+            </li>
+            <li><a href="javascript:;">Help</a></li>
+            <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="row">
+              	<div class="col-md-4">
+					<div class="x_panel fixed_height_390">
+					  <div class="x_content">
+					    <div class="flex">
+					      <ul class="list-inline widget_profile_box">
+					        <li>
+					          <a>
+					            <i class="fa fa-facebook"></i>
+					          </a>
+					        </li>
+					        <li>
+					          <img src="assets/images/user.png" alt="..." class="img-circle profile_img">
+					        </li>
+					        <li>
+					          <a>
+					            <i class="fa fa-twitter"></i>
+					          </a>
+					        </li>
+					      </ul>
+					    </div>
+						
+						<br />
+					    <h4 class="name" ng-cloak><strong>USER ID : </strong>{{visitorsScope.user_id}}</h4>
+
+					    <div class="flex">
+					      <ul class="list-inline count2">
+					        <li>
+					          <h5 class="marginNone" ng-cloak><strong>{{visitorsScope.country}}</strong></h5>
+					          <span>Country</span>
+					        </li>
+					        <li>
+					          <h5 class="marginNone" ng-cloak><strong>{{visitorsScope.city}}</strong></h5>
+					          <span>City</span>
+					        </li>
+					        <li>
+					          <h5 class="marginNone" ng-cloak><strong>{{visitorsScope.lastTimeVisitedDate | myDate }}</strong></h5>
+					          <span>Last Visit</span>
+					        </li>
+					      </ul>
+					    </div>
+					    <p>
+					      If you've decided to go in development mode and tweak all of this a bit, there are few things you should do.
+					    </p>
+					  </div>
+					</div>
+              	</div>
+              	
+              	<div class="col-md-8">
+              		<div class="x_panel">
+	                  <div class="x_title">
+	                    <h2>EVENTS<small> Perfomed</small></h2>
+	                    <ul class="nav navbar-right panel_toolbox">
+	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+	                      </li>
+	                      <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+	                        <ul class="dropdown-menu" role="menu">
+	                          <li><a href="#">Settings 1</a>
+	                          </li>
+	                          <li><a href="#">Settings 2</a>
+	                          </li>
+	                        </ul>
+	                      </li>
+	                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+	                      </li>
+	                    </ul>
+	                    <div class="clearfix"></div>
+	                  </div>
+	                  <div class="x_content">
+
+	                    <table class="table">
+	                      <thead>
+	                        <tr>
+	                          <th>Event Category</th>
+	                          <th>Action</th>
+	                          <th>Label</th>
+	                          <th>Event Name</th>
+	                          <th>Action Repeated</th>
+	                          <th>Date/Time</th>
+	                        </tr>
+	                      </thead>
+	                      <tbody>
+	                        <tr ng-repeat="data in visitorsEventData" ng-cloak>
+	                          <td>{{data.Category}}</td>
+	                          <td>{{data.Action}}</td>
+	                          <td>{{data.Label}}</td>
+	                          <td>{{data.eventName}}</td>
+	                          <td>{{data.actionRepeated}}</td>
+	                          <td>{{data.actionDateTime | myDate}}</td>
+	                        </tr>
+	                        
+	                      </tbody>
+	                    </table>
+
+	                  </div>
+	                </div>
+              	</div>
+              	
+            </div>
+            
+            
+            <div class="row">
+            	<div class="col-md-6">
+            		<div class="x_panel">
+	                  <div class="x_title">
+	                    <h2>Pages<small> Visited</small></h2>
+	                    <ul class="nav navbar-right panel_toolbox">
+	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+	                      </li>
+	                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+	                      </li>
+	                    </ul>
+	                    <div class="clearfix"></div>
+	                  </div>
+	                  <div class="x_content">
+	                    <table class="table">
+	                      <thead>
+	                        <tr>
+	                          <th>Title</th>
+	                          <th>Page</th>
+	                          <th>Viewed</th>
+	                          <th>Time</th>
+	                        </tr>
+	                      </thead>
+	                      <tbody>
+	                        <tr ng-repeat="dataPage in visitorsPagesData" ng-cloak>
+	                          <td>{{dataPage.pageTitle}}</td>
+	                          <td>{{dataPage.page}}</td>
+	                          <td>{{dataPage.pageViews}}</td>
+	                          <td>{{dataPage.timestamp | myDate}}</td>
+	                        </tr>
+	                      </tbody>
+	                    </table>
+	                  </div>
+	                </div>
+            	</div>
+            	
+            	
+            	<div class="col-md-6">
+            		<div class="x_panel">
+	                  <div class="x_title">
+	                    <h2>Device<small> Info</small></h2>
+	                    <ul class="nav navbar-right panel_toolbox">
+	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+	                      </li>
+	                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+	                      </li>
+	                    </ul>
+	                    <div class="clearfix"></div>
+	                  </div>
+	                  <div class="x_content">
+	                    <table class="table">
+	                      <thead>
+	                        <tr>
+	                          <th>OS</th>
+	                          <th>CPU</th>
+	                          <th>Browser</th>
+	                          <th>isMobileAndroid</th>
+	                          <th>isIphone</th>
+	                        </tr>
+	                      </thead>
+	                      <tbody>
+	                        <tr ng-cloak>
+	                          <td>{{visitorsScope.OS}}</td>
+	                          <td>{{visitorsScope.CPU}}</td>
+	                          <td>{{visitorsScope.browser}}</td>
+	                          <td>{{visitorsScope.isMobileAndroid}}</td>
+	                          <td>{{visitorsScope.isIphone}}</td>
+	                        </tr>
+	                      </tbody>
+	                    </table>
+	                  </div>
+	                </div>
+            	</div>
+            	
+            </div>
+            
+            
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="vendors/iCheck/icheck.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.min.js"></script>
+    <script type="text/javascript" src="assets/angular.min.js"></script>
+	<script type="text/javascript" src="controllers/controller.js"></script>
+	
+    <!-- /Datatables -->
+  </body>
+</html>

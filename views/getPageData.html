@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Data</title>
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body ng-controller="AppCtrl" ng-init="getAll()">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Geeksroot</a>
+      </div>
+      <a class="btn pull-right" href="/logout">Logout</a>	
+    </div>
+  </nav>
+
+  <div class="container" >
+  	  <table class="table" ng-if="dataAll!='empty'"> 
+     	
+     	<thead> 
+     	<tr> 
+     		<th>BrowserID</th>
+     		<th>Country</th>
+     		<th>Region</th> 
+     		<th>city</th>
+     		<th>organization</th>
+     		<th>zip</th>
+     		<th>isMobileOpera</th> 
+     		<th>isMobileWindows</th>
+     		<th>isMobileBlackBerry</th> 
+     		<th>isMobileAndroid</th> 
+     		<th>timeZone</th>
+     		<th>browser</th> 
+     		<th>isIpod</th> 
+     		<th>isIpad</th>
+     		<th>isIphone</th> 
+     		<th>isMobileIOS</th> 
+     		<th>CPU</th>
+     		<th>OperatingSystem</th> 
+     	</tr> 
+     	
+    
+     	</thead> 
+     	<tbody> 
+     	<tr ng-repeat="data in dataAllrecord"> 
+     	
+     		<td>{{data.browserID}}</td>
+     		<td>{{data.country}}</td>
+     		<td>{{data.region}}</td> 
+     		<td>{{data.city}}</td>
+     		<td>{{data.organization}}</td>
+     		<td>{{data.zip}}</td>
+     		<td>{{data.isMobileOpera}}</td> 
+     		<td>{{data.isMobileWindows}}</td>
+     		<td>{{data.isMobileBlackBerry}}</td> 
+     		<td>{{data.isMobileAndroid}}</td> 
+     		<td>{{data.timeZone}}</td>
+     		<td>{{data.browser}}</td> 
+     		<td>{{data.isIpod}}</td> 
+     		<td>{{data.isIpad}}</td>
+     		<td>{{data.isIphone}}</td> 
+     		<td>{{data.isMobileIOS}}</td> 
+     		<td>{{data.CPU}}</td>
+     		<td>{{data.OperatingSystem}}</td> 
+     	</tr>
+     	
+     	</tbody> 
+     </table> 
+  </div>
+
+<script type="text/javascript" src="assets/angular.min.js"></script>
+<script type="text/javascript" src="controllers/controller.js"></script>
+</body >
+
+</html>

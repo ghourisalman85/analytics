@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analytics Dashboard - Geeksroot</title>
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body ng-controller="AppCtrl" ng-init="allData()">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Geeksroot</a>
+      </div>
+      <a class="btn pull-right" href="/logout">Logout</a>	
+    </div>
+  </nav>
+
+  <div class="container" >
+	<div id="visitors">
+		
+	</div>  	 
+  	 <a href="/addAdvertising">Add Advertising..</a> 
+  	 <a href="/map">Visitors On MAP</a> 
+  	 <div ng-if="dataAll=='empty'" class="alert alert-danger" role="alert">No Data Available</div> 	
+     <table class="table" ng-if="dataAll!='empty'"> 
+     	<caption>WebSite Analatics.</caption> 
+     	<thead> 
+     	<tr> 
+     		<th>#id</th>
+     		<th>referringSite</th>
+     		<th>Page</th> 
+     		<th>Page Title</th> 
+     		<th>Page Complete Path</th> 
+     		<th>FingerPrints</th>
+     		<th>Location</th>
+     		<th>IP Address</th>
+     		<th>Views</th> 
+     		<th>Time</th>
+     		<th>Action</th> 
+     	</tr> 
+     	</thead> 
+     	<tbody> 
+     	<tr ng-repeat="data in dataAll"> 
+     		<th scope="row">{{data._id}}</th> 
+     		<td>{{data.referringSite}}</td> 
+     		<td>{{data.page}}</td> 
+     		<td>{{data.pageTitle}}</td> 
+     		<td>{{data.completePath}}</td> 
+     		<td>{{data.userfingerprints}}</td> 
+     		<td>{{data.locLongLAt}}</td>
+     		<td>{{data.userIpAddress}}</td> 
+     		<td>{{data.pageViews}}</td> 
+     		<td>{{data.timestamp}}</td>
+     		<td>
+     			<a href="https://lit-harbor-94642.herokuapp.com/getPageData?id={{data._id}}"   class="btn btn-default">View</a>
+     		</td> 
+     	</tr>
+     	
+     	</tbody> 
+     </table> 
+  </div>
+
+
+<script type="text/javascript" src="assets/angular.min.js"></script>
+<script type="text/javascript" src="controllers/controller.js"></script>
+<script src="https://lit-harbor-94642.herokuapp.com/socket.io/socket.io.js"></script>
+<script>
+	var socket=io("https://lit-harbor-94642.herokuapp.com");	
+	socket.on('updated-stats', function(data) {
+		document.getElementById('visitors').innerHTML=JSON.stringify(data);		
+    });    
+</script>
+</body>
+
+</html>

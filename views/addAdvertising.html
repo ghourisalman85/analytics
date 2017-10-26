@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="adverApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advertising</title>
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body ng-controller="AdvertismentCtrl">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Geeksroot</a>
+      </div>
+      <a class="btn pull-right" href="/logout">Logout</a>	
+    </div>
+  </nav> 
+
+  <div class="container" >
+  	 <form>
+	  
+	  <label>
+      <input id="location" type="radio" name="content" ng-model="content" value="location" >
+       Advertisment By Location
+	   </label>
+	   <label>
+	    <input id="users" type="radio" name="users" ng-model="content" value="users">
+	   Advertisment By Users
+	  </label>	
+		
+	</form>
+  </div>
+  
+  <div class="wrap">    
+    <div class="wrapper">
+      <div ng-show="content == 'users'" class="well">
+      	<div class="container text-left">
+      		<form>
+      		  <div class="form-group">
+			    <label>Place Your User ids</label>
+			    <input type="text" ng-model="data.userIds" class="form-control" />
+       		  </div>
+       		  
+			  <div class="form-group">
+			    <label for="">Advertising HTML</label>
+				<textarea rows="10" ng-model="data.UserAdData"  class="form-control"></textarea>
+			  </div>
+			  <button type="button" ng-click="addUserAdd(data);" class="btn btn-default">Submit</button>
+			</form>
+			<div ng-if="userresponsetext" ng-hide="userfaildMessage" class="alert alert-danger animate-show-hide">{{userresponsetext}}</div>
+			<div ng-if="useresponsesucess" ng-hide="usersuccessMessage" class="alert alert-success animate-show-hide">{{useresponsesucess}}</div>
+      	</div>
+      </div>
+      <div ng-show="content == 'location'" class="well">
+      	<div class="container text-left">
+      		<div class="">
+	      		<form>
+	      		  <div class="form-group">
+				    <label>Location</label>
+				    <input type="text" ng-model="data.locations" class="form-control" />
+	       		  </div>
+	       		  
+				  <div class="form-group">
+				    <label for="exampleInputFile">Advertising HTML</label>
+					<textarea rows="10" ng-model="data.adData"  class="form-control"></textarea>
+				  </div>
+				  <button type="button" ng-click="addLocation(data);" class="btn btn-default">Submit</button>
+				</form>
+				<div ng-if="responsetext" ng-hide="faildMessage" class="alert alert-danger animate-show-hide">{{responsetext}}</div>
+				<div ng-if="Responsesucess" ng-hide="successMessage" class="alert alert-success animate-show-hide">{{Responsesucess}}</div>
+	      	</div>
+      	</div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript" src="assets/angular.min.js"></script>
+<script type="text/javascript" src="controllers/advertisment.js"></script>
+</body>
+
+</html>

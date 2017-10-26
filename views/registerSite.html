@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register Website For analytics</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/front.css">
+  
+</head>
+
+<body ng-controller="AppCtrl">
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Geeksroot</a>
+      </div>
+    </div>
+  </nav>
+  
+  
+  <div class="container well">
+  	<h3>Register Your Website</h3>	
+  	<form>
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">Website Name</label>
+	    <input type="text" class="form-control" placeholder="Name" ng-model="site.websitename">
+	  </div>
+	  <div class="form-group">
+	    <label for="exampleInputPassword1">Website Url</label>
+	    <input type="text" class="form-control" placeholder="URl" ng-model="site.websiteurl"> 
+	  </div>
+	  
+	  <div ng-if="regStatus" class="alert alert-danger" role="alert">{{regStatus}}</div>
+	  <button type="button" class="btn btn-default" ng-click="registerSite()">Submit</button>
+	</form>
+	<div ng-if="responsetext" class="alert alert-danger animate-show-hide">{{responsetext}}</div>
+	<div ng-if="responsetextsucess" class="alert alert-success animate-show-hide">{{responsetextsucess}}</div>
+
+	<div class="form-group" ng-if="responsetextsucess">
+ 	   <label for="exampleInputPassword1">Your Analytic Code Please put this code on your Website Header.</label>
+   	   <textarea  class="form-control" rows="15" >{{script}} </textarea> 
+	</div>
+
+
+  </div>
+
+  
+<script type="text/javascript" src="assets/angular.min.js"></script>
+<script type="text/javascript" src="controllers/controller.js"></script>
+
+</body>
+</html>

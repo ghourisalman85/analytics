@@ -1,0 +1,15 @@
+<script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('http://localhost:5000/service-worker.js', {scope: './'}).then(function(registration) {
+	    alert('succeeded');
+	  }).catch(function(error) {
+	    alert(error);
+	  });
+    } else {
+      this.showErrorMessage(
+        'Service Worker Not Supported',
+        'Sorry this demo requires service worker support in your browser. ' +
+        'Please try this demo in Chrome or Firefox Nightly.'
+      );
+    }
+</script>
